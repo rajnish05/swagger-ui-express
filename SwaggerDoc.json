@@ -1,0 +1,147 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "PUBLIC API",
+        "description": "Find out how to Document Public APIs on Swagger",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+
+    "basePath": "/api/v1",
+    "tags": [
+        {
+            "name": "Register",
+            "description": "API used for User Registration"
+        },
+        {
+            "name": "Login",
+            "description": "API used for User Login"
+        }
+       
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+  
+    "paths": {
+        "/user/register": {
+            "post": {
+                "summary": "User Registration",
+                "tags": [
+                    "Register"
+                ],
+                "description": "This API is used for Registering User",
+                "parameters": [
+                    {
+                        "name": "User",
+                        "in": "body",
+                        "description": "User Register",
+                        "schema": {
+                            "$ref": "#/definitions/registerUserRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registration Success"
+                       },
+                       "400": {
+                        "description": "Bad Request"
+                    },
+                    "409": {
+                        "description": "Email is already registered !"
+                    },
+                    "500": {
+                        "description": "Oops ! something went wrong"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login Module",
+                "parameters": [
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "User Login",
+                        "schema": {
+                            "$ref": "#/definitions/loginUserRequest"
+                        }
+                    }
+                    
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Login Successfully"
+                       },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Invalid Credentials"
+                    },
+                    "500": {
+                        "description": "Oops ! something went wrong"
+                    }
+                }
+            }
+        }
+        
+        },
+        "definitions":{
+        "registerUserRequest":{
+            "properties": {
+                "name":{
+                    "type":"string",
+                    "required":true,
+                    "example":"Kumar"
+                },
+                "contact":{
+                    "type":"string",
+                    "required":true,
+                    "example":"8506981317"
+                },
+                "email":{
+                    "type":"string",
+                    "required":true,
+                    "example":"Kumar89rajnish@gmail.com"
+                },
+                "password":{
+                    "type":"string",
+                    "required":true,
+                    "example":"******"
+                }
+            }
+        },
+        "loginUserRequest":{
+            "properties": {
+                "email":{
+                    "type":"string",
+                    "required":true,
+                    "example":"Kumar89rajnish@gmail.com"
+                },
+                "password":{
+                    "type":"string",
+                    "required":true,
+                    "example":"******"
+                }
+            }
+        }
+    }
+}
